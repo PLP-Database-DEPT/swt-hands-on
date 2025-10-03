@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Checker Lite - Demo for Testing</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #72b1d9, #4a6fa5);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .app-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    #cityInput {
+      flex: 1;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 2px solid #bdc3c7;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    #cityInput:focus {
+      border-color: #3498db;
+    }
+
+    #checkBtn {
+      padding: 0.75rem 1.5rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    #checkBtn:hover {
+      background: #2980b9;
+    }
+
+    .weather-display {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: #f8f9fa;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .weather-display.hidden {
+      display: none;
+    }
+
+    .temp {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e74c3c;
+      margin: 0.5rem 0;
+    }
+
+    .city-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .condition {
+      font-size: 1.1rem;
+      color: #7f8c8d;
+    }
+
+    .error {
+      color: #e74c3c;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <h1>🌤️ Weather Checker Lite</h1>
+    <p>Enter a city name to check today’s weather.</p>
+
+    <div class="input-group">
+      <input type="text" id="cityInput" placeholder="e.g., Nairobi, London, Tokyo">
+      <button id="checkBtn">Check Weather</button>
+    </div>
+
+    <div id="weatherDisplay" class="weather-display hidden">
+      <div class="city-name" id="cityName">—</div>
+      <div class="temp" id="temp">—°C</div>
+      <div class="condition" id="condition">—</div>
+    </div>
+
+    <div id="errorMsg" class="error"></div>
+  </div>
+
+  <script>
+    const cityInput = document.getElementById('cityInput');
+    const checkBtn = document.getElementById('checkBtn');
+    const weatherDisplay = document.getElementById('weatherDisplay');
+    const cityNameEl = document.getElementById('cityName');
+    const tempEl = document.getElementById('temp');
+    const conditionEl = document.getElementById('condition');
+    const errorMsg = document.getElementById('errorMsg');
+
+    const fakeWeatherData = {
+      "nairobi": { temp: 24, condition: "Sunny ☀️" },
+      "london": { temp: 12, condition: "Rainy 🌧️" },
+      "tokyo": { temp: 18, condition: "Cloudy ☁️" },
+      "new york": { temp: 15, condition: "Windy 🌬️" },
+      "sydney": { temp: 22, condition: "Partly Cloudy ⛅" }
+    };
+
+    function showError(message) {
+      errorMsg.textContent = message;
+      weatherDisplay.classList.add('hidden');
+    }
+
+    function showWeather(city, data) {
+      cityNameEl.textContent = city;
+      tempEl.textContent = `${data.temp}°C`;
+      conditionEl.textContent = data.condition;
+      weatherDisplay.classList.remove('hidden');
+      errorMsg.textContent = '';
+    }
+
+    checkBtn.addEventListener('click', () => {
+      const city = cityInput.value.trim();
+
+      if (!city) {
+        return;
+      }
+
+      if (fakeWeatherData[city]) {
+        showWeather(city, fakeWeatherData[city]);
+      } else {
+        showError("City not found. Try: nairobi, london, tokyo, new york, sydney.");
+      }
+    });
+
+    cityInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
