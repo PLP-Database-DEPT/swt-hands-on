@@ -88,10 +88,62 @@ Map how the app behaves as users move between actions (input, calculate, error, 
 2. Identify the **events** that move it from one state to another.  
 3. Represent this in your report using **Mermaid** or a simple table:
 
-```markdown
-```mermaid
+
+```Mermaid
 stateDiagram-v2
   [*] --> Start
   Start --> InputReady: user provides input
   InputReady --> ??? : (fill in your own transition)
   ??? --> ??? : (continue until reset)
+```
+### 6️⃣ Step 6: Reflection
+
+In your `Test_Report_Summary.md`, briefly discuss:
+- Which technique uncovered the most interesting defect?  
+- Did any test behave differently than expected?  
+- How did thinking in partitions or boundaries change the way you tested?  
+- Which technique would you automate first and why?
+
+---
+
+## 🧠 **What You’ll Practice**
+
+| Technique | Focus Area |
+|------------|------------|
+| Equivalence Partitioning | Identifying valid / invalid data sets |
+| Boundary Value Analysis  | Detecting edge-related issues |
+| Decision Table Testing   | Managing combinations of conditions |
+| State Transition Testing | Observing behavior across user actions |
+
+---
+
+## 🧾 **Deliverable**
+
+Submit a single file:  
+**`Test_Report_Summary.md`** containing:
+- Your EP, BVA, DTT, STT notes and tables  
+- Short reflection (max ½ page)  
+
+Screenshots are optional but helpful.
+
+---
+
+## ⚙️ **Optional Extension**
+
+If time allows:
+1. Try modifying one input validation rule in the JavaScript.  
+2. Re-run your tests — which of your test cases now fail or pass?  
+3. Explain how structured test design made that retesting easier.
+
+---
+
+## 🔗 **Additional Resources**
+
+- [Equivalence Partitioning & BVA – Guru99](https://www.guru99.com/equivalence-partitioning-boundary-value-analysis.html)  
+- [Decision Table Testing – GeeksforGeeks](https://www.geeksforgeeks.org/decision-table-testing-in-software-engineering/)  
+- [State Transition Testing – Software Testing Help](https://www.softwaretestinghelp.com/state-transition-testing/)  
+- [Mermaid Live Editor](https://mermaid.live)  
+
+---
+
+🧩 *Focus on process and reasoning — not on matching answers. There are no “official solutions.” Each group’s tables and observations should differ based on how you interpret and explore the app.*
