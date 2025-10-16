@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Fare Calculator (Kenya)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{font-family:'Inter',sans-serif;background:#f5f6fa;padding:2rem;color:#333}
+    .container{max-width:720px;margin:auto;background:#fff;border-radius:12px;padding:2rem;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+    h1{text-align:center;margin-bottom:1rem}
+    label{display:block;margin:.5rem 0 .25rem;font-weight:600}
+    select,input,button{width:100%;padding:.75rem;border:1px solid #ccc;border-radius:8px;font-size:1rem}
+    button{margin-top:1rem;background:#2563eb;color:white;border:none;cursor:pointer}
+    button:hover{background:#1d4ed8}
+    .secondary{background:#6b7280}
+    .error{color:#b91c1c;margin-top:.5rem}
+    .result{margin-top:1rem;font-weight:700}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚌 Kenya Bus Fare Calculator</h1>
+    <p>Estimate fares between major cities. Practice test design techniques.</p>
+
+    <div class="row">
+      <div>
+        <label for="city">Destination City</label>
+        <select id="city">
+          <option value="">Select City</option>
+          <option value="nairobi">Nairobi</option>
+          <option value="mombasa">Mombasa</option>
+          <option value="kisumu">Kisumu</option>
+          <option value="nakuru">Nakuru</option>
+        </select>
+      </div>
+      <div>
+        <label for="time">Departure Time (24h)</label>
+        <input id="time" type="time">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="type">Passenger Type</label>
+        <select id="type">
+          <option value="adult">Adult</option>
+          <option value="student">Student</option>
+          <option value="senior">Senior</option>
+        </select>
+      </div>
+      <div>
+        <label for="age">Age</label>
+        <input id="age" type="number" placeholder="e.g. 35">
+      </div>
+    </div>
+
+    <button id="calc">Calculate Fare</button>
+    <button class="secondary" id="reset">Reset</button>
+
+    <div id="error" class="error"></div>
+    <div id="fare" class="result"></div>
+  </div>
+
+  <script>
+    const cityFare = { nairobi:500, mombasa:700, kisumu:600, nakuru:400 };
+
+    // Bug #1: uses >65 instead of >=60
+    function isSenior(age){ return Number(age) > 65; }
+
+    function isPeak(time){
+      if(!/^\d{2}:\d{2}$/.test(time)) return false;
+      const [h,m]=time.split(':').map(Number);
+      const minutes = h*60+m;
+      const morning = minutes>=6*60 && minutes<=8*60+59;
+      const evening = minutes>=17*60 && minutes<=20*60; // Bug #2: should stop at 19:59
+      return morning||evening;
+    }
+
+    document.getElementById('calc').addEventListener('click',()=>{
+      const city = document.getElementById('city').value;
+      const time = document.getElementById('time').value;
+      const type = document.getElementById('type').value;
+      const age = Number(document.getElementById('age').value);
+      const errorEl = document.getElementById('error');
+      const fareEl = document.getElementById('fare');
+
+      errorEl.textContent = ''; fareEl.textContent='';
+
+      if(!cityFare[city]){ errorEl.textContent='❌ Invalid city selected.'; return; }
+      if(!/^\d{2}:\d{2}$/.test(time)){ errorEl.textContent='❌ Invalid time format.'; return; }
+      if(age<0 || isNaN(age)){ errorEl.textContent='❌ Invalid age entered.'; return; }
+
+      let fare = cityFare[city];
+      if(isPeak(time)) fare += 100; // KSh 100 peak surcharge
+
+      if(type==='student') fare *= 0.8;
+      else if(type==='senior' && isSenior(age)) fare *= 0.7;
+
+      fareEl.textContent=`Estimated Fare: KSh ${fare.toFixed(2)}`;
+    });
+
+    document.getElementById('reset').addEventListener('click',()=>{
+      ['city','time','type','age'].forEach(id=>document.getElementById(id).value='');
+      document.getElementById('error').textContent='';
+      document.getElementById('fare').textContent='';
+    });
+  </script>
+</body>
+</html>
