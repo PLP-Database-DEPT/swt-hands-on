@@ -1,0 +1,136 @@
+📝 Assignment 5: Test Plan Components — Full Answer
+👤 Tester Information
+
+Name: Meseret Akalu
+
+Title: Software QA Engineer / Tester
+
+A test plan is basically the heartbeat of any testing project — the one document that keeps everyone honest, aligned, and far away from chaos. It’s the roadmap telling the team what to test, how to test, when, and by who. Without it, a QA team is just drifting in the wind.
+
+1. Importance of a Test Plan
+
+A test plan matters because:
+
+It guides the entire testing effort.
+
+It ensures consistency so no one is testing random things out of vibes.
+
+It manages expectations for developers, PMs, and stakeholders.
+
+It reduces project risks by catching issues early.
+
+It supports communication across the whole team.
+
+2. Key Components of a Strong Test Plan
+a. Introduction & Objectives
+
+Defines why we are testing and what quality standards we’re aiming for.
+
+b. Scope
+
+What is included and what is excluded — this is the shield against scope creep.
+
+c. Test Strategy
+
+How testing will be performed (types, techniques, tools).
+
+d. Test Items
+
+Modules, APIs, features, or systems that must be validated.
+
+e. Roles & Responsibilities
+
+Who is doing what — including the tester (you), developers, test lead.
+
+f. Environment Requirements
+
+Servers, devices, browsers, test data — everything needed to run tests properly.
+
+g. Entry & Exit Criteria
+
+Conditions to start and conditions to wrap up testing.
+
+h. Test Schedule
+
+The timeline from planning → execution → closure.
+
+i. Deliverables
+
+Test cases, reports, logs, defect summaries, final QA sign-off.
+
+j. Risks & Mitigations
+
+Potential threats and how the team plans to handle them.
+
+3. Importance of Scope Definition
+
+Scope is the fence that protects the project from becoming a never-ending story.
+Good scope:
+
+Prevents scope creep
+
+Keeps testers and devs aligned
+
+Helps accurate estimation
+
+Ensures effort goes into the right areas
+
+Maintains project timelines
+
+4. Required Resources for an Effective Test Plan
+Human Resources
+
+Test Lead
+
+Tester: Meseret Akalu
+
+Developers for support
+
+Business analyst / Product owner
+
+Tools
+
+TestLink or Jira for managing test cases
+
+Defect tracking tools
+
+Automation tools (Selenium, Cypress)
+
+Performance tools (JMeter)
+
+Environment
+
+Test servers
+
+Databases
+
+Devices/Browsers
+
+API endpoints
+
+Proper access permissions
+
+Documentation
+
+BRD / SRS
+
+User stories
+
+Design docs
+
+UI/UX mockups
+
+5. Why Reviewing & Updating the Test Plan Is Crucial
+
+A test plan isn’t a stone tablet — it’s a living document.
+Things change, requirements shift, timelines get spicy, and the plan must adapt.
+
+Updating it helps:
+
+Keep testing aligned with new features
+
+Adjust strategies and timelines
+
+Add newly discovered risks
+
+Maintain complete and accurate coverage
